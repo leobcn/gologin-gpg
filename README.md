@@ -1,5 +1,5 @@
 # gologin-gpg
-GPG login writen in Go lang
+GPG login writen in Go lang, this is a proof of concept and as such my contain major security risk
 
 ##Installation
     go get github.com/zowhoey/gologin-gpg
