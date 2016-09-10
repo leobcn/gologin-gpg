@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<style>
+.login{
+	float:right;
+	width:50%;
+}
+.register{
+	float: left;
+	width:50%;
+}
+.inner{
+	padding-top: 35%;
+	align-self: center;
+	width:30%;
+	margin: auto;
+}
+.hex{
+	width: 100%;
+	height: auto;
+}
+</style>
+
+<html>
+	<script type="text/javascript">
+        	
+		function SelectAll(id){
+				document.getElementById(id).focus();
+				document.getElementById(id).select();
+		}
+
+		function addNewlines() {
+				var str = document.getElementById("hex").value
+				var result = '';
+				while (str.length > 0) {
+					result += str.substring(0, 64) + '\n';
+					str = str.substring(64);
+				}
+				result ="-----BEGIN PGP MESSAGE-----\nVersion: GnuPG v2\n\n"+result;
+				result += "\n-----END PGP MESSAGE-----"
+				document.getElementById("hex").value = result
+		}
+	</script>
+
+	<head>
+		<title>{{ .Title }}</title>
+	</head>
+
+	<body onload="addNewlines();">
+
+		<div class="login">
+			<div class="inner">
+				<form action="/processlogin" method="post" accept-charset="UTF-8" enctype="application/x-www-form-urlencoded" autocomplete="off">
+					<input type="text" name="username" class="login-username" placeholder="Username" value=""><br>
+					<input type="textarea" name="password" class="login-username" placeholder="Decrypted string"><br>
+					<input type="submit" class="loginbtn" value="Login">
+				</form>
+			</div>
+		</div>
+
+		<div class="register">
+			<textarea spellcheck="false" class="hex" id="hex" rows="35" onClick="SelectAll('hex');">{{ .GPG }}</textarea>
+			<input type="button" value="Select all" onclick="SelectAll('hex');">
+		</div>
+
+	</body>
+</html>
