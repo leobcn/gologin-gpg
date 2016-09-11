@@ -1,0 +1,6 @@
+{
+  "name": "Gologin-gpg",
+  "tagline": "GPG login writen in Go lang",
+  "body": "# gologin-gpg\r\nGPG login writen in Go lang, this is a proof of concept and as such may contain major security risks\r\n\r\n##Installation\r\n    go get github.com/zowhoey/gologin-gpg\r\n\r\n**this shouldn't be used on any production server as it may contain security risks**\r\n##Flags\r\n**-port** - port number (default: \"9090\")\r\n\r\n**-public_key** - GPG public keyring (default: \"pubring.gpg\")\r\n\r\n**-user** - change username (default: \"username\")\r\n\r\n**-template** - change template location (default: \"login.tmpl\")\r\n\r\n**-tls** - use TLS (default: 0) \r\n\r\n**-tlsCert** - location of cert.pem file (default: \"cert.pem\")\r\n\r\n**-tlsKey** - location of key.pem file (default: \"key.pem\") \r\n",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
