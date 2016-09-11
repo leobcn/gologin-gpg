@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"html/template"
 	"net/http"
-	"strings"
 )
 
 func login(w http.ResponseWriter, r *http.Request) {
@@ -28,17 +27,17 @@ func processlogin(w http.ResponseWriter, r *http.Request) {
 		//if GET method redirects back to login page
 		http.Redirect(w, r, "/", 301)
 
-	} else { //if method is POST try to process login
+	} else {
+		//if method is POST try to process login
 		r.ParseForm() //parses input
 
 		//Compares username and secret string
-		if (strings.Join(r.Form["username"], ",")) == *username && strings.Join(r.Form["password"], ",") == secretString {
+		if r.FormValue("username") == *username && r.FormValue("password") == secretString {
 			fmt.Print("Login succesful\n")
 		} else {
 			fmt.Print("Login failed\n")
 		}
 	}
-
 	//redirects back to login page regardless of login status
 	http.Redirect(w, r, "/", 301)
 }
