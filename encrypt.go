@@ -2,11 +2,10 @@ package main
 
 import (
 	"bytes"
+	"crypto/rand"
 	"encoding/base64"
 	"io/ioutil"
-	"math/rand"
 	"os"
-	"time"
 
 	"golang.org/x/crypto/openpgp"
 )
@@ -14,17 +13,16 @@ import (
 //generates a random secretString
 var secretString = randSeq(1000)
 
-//characters that will be used for a random string
-var letters = []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123467890!£$%^&*_+=-?@~#:;}][|")
+func generateBytes(n int) []byte {
+	b := make([]byte, n)
+	_, err := rand.Read(b)
+	check(err)
+	return b
+}
 
-//function that generates the random string of characters with n number of characters
-func randSeq(n int) string {
-	rand.Seed(time.Now().UTC().UnixNano())
-	b := make([]rune, n)
-	for i := range b {
-		b[i] = letters[rand.Intn(len(letters))]
-	}
-	return string(b)
+func randSeq(l int) string {
+	b := generateBytes(l)
+	return base64.URLEncoding.EncodeToString(b)
 }
 
 //encrypts the secretString
