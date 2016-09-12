@@ -13,8 +13,7 @@ func login(w http.ResponseWriter, r *http.Request) {
 	check(err)                   //check for errors during encryption
 
 	title := "Login"
-	p := &Page{Title: title} //changes {{Title}} value in template
-	p = &Page{GPG: hex}      //changes {{GPG}} value in template
+	p := &Page{Title: title, GPG: hex} //changes {{Title}} and {{GPG}} values in template
 	t, err := template.ParseFiles(*tmpl)
 	check(err)
 
